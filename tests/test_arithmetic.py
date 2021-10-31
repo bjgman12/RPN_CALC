@@ -1,4 +1,4 @@
-from calc.arithmetic import *
+from calc.calc_logic import *
 
 def test_sum_int():
     actual = sum(5,2)
