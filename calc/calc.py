@@ -1,10 +1,7 @@
 # iMPORTS HERE
 import sys
-
-class Calc:
-    """[Main Class for RPN Calc Apllication]
-    """
-
+from calc_logic import Actor
+class Calc():
     def __init__(self):
         pass
 
@@ -22,7 +19,7 @@ class Calc:
 
         res = input("> ")
 
-        while res != 's' or res != 'q':
+        while res != 's' and res != 'q':
             print("Please enter a valid input (s)tart or (q)uit")
             res = input("> ")
 
@@ -41,7 +38,8 @@ class Calc:
     def start_app(self):
         # instatiate the actor
         # start calculations
-        pass
+        actor = Actor()
+        actor.start_math_engine()
 
 
 if __name__ == "__main__":
