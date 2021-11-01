@@ -4,7 +4,7 @@
 
 #### Authors : Brandon Gonzalez
 #### Created 29 October 2021
-#### Version 0.0
+#### Version 0.1
 
 
 ## Description 
@@ -24,8 +24,22 @@
 
 - exit on `q` , or end of input ie `Ctrl+D`
 
+## USE
+
+- clone repository
+- install dependencies
+- run calc.py
+
 ## ChangeLog
+
+- currently takes all single input queries
+- takes 2 operands then one operator
+- takes 2 operands and one operator
+- [ ] takes one operator then one operator and operand (coming soon)
 
 ## Testing
 
 
+- [x] Arithmetic functions testes
+- [ ] Mock input testing (coming soon)
+- [ ]
