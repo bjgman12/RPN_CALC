@@ -6,8 +6,21 @@ class CalcLogic:
         pass
 
     @staticmethod
-    def multi_handler():
-        print("im Here")
+    def multi_handler(input_str,act):
+        input_arr = input_str.split(' ')
+        if len(input_arr) > 3:
+            print("Invalid chain input chained input should have 2 operands followed by one operator")
+            act.start_math_engine()
+        elif len(input_arr) == 3:
+            act.operand_arr.append(input_arr.pop(0))
+            act.operand_arr.append(input_arr.pop(0))
+            CalcLogic.op_check(act,input_arr.pop(0))
+        elif len(input_arr) == 2 :
+            act.operand_arr.append(input_arr.pop(0))
+            act.operand_arr.append(input_arr.pop(0))
+            CalcLogic.single_operator_check(act)
+        # check if input_arr is correct length
+        # check if lastChain is operator
 
     @staticmethod
     def single_handler(char,act):
@@ -23,8 +36,12 @@ class CalcLogic:
 
     @staticmethod
     def single_operator_check(act):
-        op_switch = True
         char = input("> ")
+        CalcLogic.op_check(act,char)
+
+    @staticmethod
+    def op_check(act,char):
+        op_switch = True
         while op_switch:
             if char == '-':
                 print(difference(act.operand_arr[0],act.operand_arr[1]))
@@ -52,6 +69,7 @@ class CalcLogic:
                 print(" Please inter a valid operator + , - , * , /")
                 char = input("> ")
 
+
 class CalcState:
 
     def __init__ (self,curr_num = 0):
@@ -75,7 +93,7 @@ class Actor(CalcState):
         while len(self.operand_arr) < 2:
             operand = input('> ')
             if len(operand.split()) > 1:
-                CalcLogic.multi_handler()
+                CalcLogic.multi_handler(operand,self)
             else:
                 CalcLogic.single_handler(operand,self)
         
