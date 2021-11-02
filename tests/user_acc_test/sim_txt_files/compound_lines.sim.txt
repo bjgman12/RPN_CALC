@@ -1,0 +1,8 @@
+Welcome to my RPN CALC please enter (s) to start or (q) to quit
+> s
+> 34 56 +
+90.0
+> 34 56 
+ Please inter a valid operator + , - , * , /
+> +
+90.0
