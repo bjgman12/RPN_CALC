@@ -33,7 +33,7 @@
 ## USE
 
 - clone repository
-- install dependencies
+- install dependencies (using pip or poetry)
 - run calc.py
 
 ## ChangeLog
