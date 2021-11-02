@@ -1,5 +1,7 @@
 # iMPORTS HERE
 import sys
+from signal import signal,SIGINT
+
 try:
     from calc_logic import Actor
 except:
@@ -20,11 +22,17 @@ class Calc():
 
         print('Welcome to my RPN CALC please enter (s) to start or (q) to quit')
 
-        res = input("> ")
+        try:
+            res = input("> ")
+        except EOFError:
+            sys.exit()
 
         while res != 's' and res != 'q':
             print("Please enter a valid input (s)tart or (q)uit")
-            res = input("> ")
+            try:
+                res = input("> ")
+            except EOFError:
+                sys.exit()
 
         if res == 's':
             #start calculator
@@ -45,6 +53,12 @@ class Calc():
         actor.start_math_engine()
 
 
+def exit_handler(signal_recieved, frame):
+    print('Exit Command Recieved exiting now')
+    sys.exit()
+
+
 if __name__ == "__main__":
+    signal(SIGINT,exit_handler)
     calc = Calc();
     calc.runCalc()

@@ -7,24 +7,42 @@ class CalcLogic:
 
     @staticmethod
     def multi_handler(input_str,act):
+        """[Handles parsing multi operator inputs]
+
+        Args:
+            input_str ([string]): [string of operands and or operators ]
+            act ([object]): [instance of Actor class]
+        """
         input_arr = input_str.split(' ')
         if len(input_arr) > 3:
             print("Invalid chain input chained input should have 2 operands followed by one operator")
             act.start_math_engine()
         elif len(input_arr) == 3:
-            act.operand_arr.append(input_arr.pop(0))
-            act.operand_arr.append(input_arr.pop(0))
-            CalcLogic.op_check(act,input_arr.pop(0))
+            try:
+                act.operand_arr.append(float(input_arr.pop(0)))
+                act.operand_arr.append(float(input_arr.pop(0)))
+                CalcLogic.op_check(act,input_arr.pop(0))
+            except ValueError:
+                print("Invalid Input looking for 2 operands followed by an operator")
         elif len(input_arr) == 2 :
-            act.operand_arr.append(input_arr.pop(0))
-            act.operand_arr.append(input_arr.pop(0))
-            CalcLogic.single_operator_check(act)
+            try:
+                act.operand_arr.append(float(input_arr.pop(0)))
+                act.operand_arr.append(float(input_arr.pop(0)))
+                CalcLogic.single_operator_check(act)
+            except ValueError:
+                print("Invalid chain Input looking for 2 operands followed by an operator")
+
         # check if input_arr is correct length
         # check if lastChain is operator
 
     @staticmethod
     def single_handler(char,act):
-      
+        """[handles single ichar inputs]
+
+        Args:
+            char ([string]): [a sting of a number]
+            act ([obj]): [instance of Actor class]
+        """
         try:
             if char == 'q':
                 sys.exit()
@@ -36,11 +54,22 @@ class CalcLogic:
 
     @staticmethod
     def single_operator_check(act):
+        """[checks input when only an operator is needed]
+
+        Args:
+            act ([obj]): [instance of Actor Class]
+        """
         char = input("> ")
         CalcLogic.op_check(act,char)
 
     @staticmethod
     def op_check(act,char):
+        """[checks if input is a valid operator]
+
+        Args:
+            act ([obj]): [instance of Actor Instance]
+            char ([string]): [string input for operator]
+        """
         op_switch = True
         while op_switch:
             if char == '-':
@@ -66,8 +95,12 @@ class CalcLogic:
             elif char == "q":
                 sys.exit()
             else:
-                print(" Please inter a valid operator + , - , * , /")
-                char = input("> ")
+                print( char, ": Is not a valid operator. Please inter a valid operator + , - , * , /")
+                try:
+                    char = input("> ")
+                except EOFError:
+                    sys.exit()
+
 
 
 class CalcState:
@@ -88,10 +121,16 @@ class Actor(CalcState):
         self.operand_arr = []
 
     def start_math_engine(self):
+        """[starts taking in input for math engine]
+        """
         operand = ''
+        self.calc_count += 1
         #take and parse input
         while len(self.operand_arr) < 2:
-            operand = input('> ')
+            try:
+                operand = input('> ')
+            except EOFError:
+                sys.exit()
             if len(operand.split()) > 1:
                 CalcLogic.multi_handler(operand,self)
             else:
@@ -102,21 +141,74 @@ class Actor(CalcState):
         #print and store result
 
 
-# Arithmetic
+# Arithmetic globals
+
 from decimal import *
 getcontext().prec = 4
 
 def sum(a,b):
+    """sums 2 numbers
 
-    return float(Decimal(a) + Decimal(b))
+    Args:
+        a ([str]): [input representing a float]
+        b ([str]): [input representing a float]
+
+    Returns:
+        [float]: [sum of a and b]
+    """
+    try:
+        return float(Decimal(a) + Decimal(b))
+    except ValueError:
+        print(f'Must add 2 numbers not ${type(a)} and ${type(b)}')
+        return 0
 
 def difference(a,b):
-    return  float(Decimal(a) - Decimal(b))
+    """ subtracts 2 numbers
+
+    Args:
+        a ([str]): [input representing a float]
+        b ([str]): [input representing a float]
+
+    Returns:
+        [float]: [difference of a and b]
+    """
+    try:
+        return  float(Decimal(a) - Decimal(b))
+    except ValueError:
+        print(f'Must subtract 2 numbers not ${type(a)} and ${type(b)}')
+        return 0
+
 
 def product(a,b):
-    return float(Decimal(a) * Decimal(b))
+    """multiplies 2 numbers
+
+    Args:
+        a ([str]): [input representing a float]
+        b ([str]): [input representing a float]
+
+    Returns:
+        [float]: [product of a and b]
+    """
+    try:
+        return float(Decimal(a) * Decimal(b))
+    except ValueError:
+        print(f'Must multiply 2 numbers not ${type(a)} and ${type(b)}')
+        return 0
 
 def quotient(a,b):
-    return float(Decimal(a) / Decimal(b)) 
+    """divides 2 numbers
+
+    Args:
+        a ([str]): [input representing a float]
+        b ([str]): [input representing a float]
+
+    Returns:
+        [float]: [difference of a and b]
+    """
+    try:
+        return float(Decimal(a) / Decimal(b)) 
+    except:
+        print(f'Must multiply 2 numbers not ${type(a)} and ${type(b)}')
+        return 0
 
 

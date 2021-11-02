@@ -12,3 +12,7 @@ from calc.calc_logic import *
 #     expected = "Invalid input please enter a number"
     
 #     assert actual == expected 
+
+def test_actor_instance():
+    act = Actor()
+    assert act.calc_count == 0

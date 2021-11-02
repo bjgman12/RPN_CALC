@@ -1,0 +1,13 @@
+Welcome to my RPN CALC please enter (s) to start or (q) to quit
+> s
+> 34 $
+Invalid chain Input looking for 2 operands followed by an operator
+> _ _ _
+Invalid Input looking for 2 operands followed by an operator
+> 34 54 ^
+^ : Is not a valid operator. Please inter a valid operator + , - , * , /
+> +
+68.0
+> % 54 34
+Invalid Input looking for 2 operands followed by an operator
+> q

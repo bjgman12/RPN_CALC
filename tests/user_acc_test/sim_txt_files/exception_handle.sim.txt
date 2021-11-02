@@ -1,0 +1,11 @@
+Welcome to my RPN CALC please enter (s) to start or (q) to quit
+> s
+> r
+Invalid Input Enter a number
+> 45 48 48 48
+Invalid chain input chained input should have 2 operands followed by one operator
+> 49 58 + +
+Invalid chain input chained input should have 2 operands followed by one operator
+> 48 73 +
+121.0
+> q
