@@ -1,0 +1,3 @@
+Welcome to my RPN CALC please enter (s) to start or (q) to quit
+> q
+Ok till next time.

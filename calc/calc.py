@@ -1,6 +1,9 @@
 # iMPORTS HERE
 import sys
-from calc_logic import Actor
+try:
+    from calc_logic import Actor
+except:
+    from calc.calc_logic import Actor
 class Calc():
     def __init__(self):
         pass
